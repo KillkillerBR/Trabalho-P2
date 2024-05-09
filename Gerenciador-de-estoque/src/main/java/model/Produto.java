@@ -31,8 +31,8 @@ public class Produto implements Serializable {
     private Integer quantidadeMinima;
     private CodigoBarras codigoDeBarras;
     private Validade validade;
-    private List<Entrada> entradas;
-    private List<Saida> saidas;
+    private Entrada entrada;
+    private Saida saida;
     private Estoque estoque;
 
     @Override
