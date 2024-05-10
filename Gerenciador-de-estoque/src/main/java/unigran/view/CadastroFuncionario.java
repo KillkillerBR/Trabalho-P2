@@ -4,6 +4,10 @@
  */
 package unigran.view;
 
+import java.text.ParseException;
+import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
+
 /**
  *
  * @author Jhonatan-OM
@@ -16,6 +20,7 @@ public class CadastroFuncionario extends javax.swing.JDialog {
     public CadastroFuncionario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        formatarCamp();
     }
 
     /**
@@ -29,39 +34,35 @@ public class CadastroFuncionario extends javax.swing.JDialog {
 
         jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
         labelNome = new javax.swing.JLabel();
-        textFieldNome = new javax.swing.JTextField();
         labelCpf = new javax.swing.JLabel();
-        textFieldCpf = new javax.swing.JTextField();
         labelDataNasc = new javax.swing.JLabel();
         labelTelefone = new javax.swing.JLabel();
-        textFieldTelefone = new javax.swing.JTextField();
         dateChooserDataNascimento = new com.toedter.calendar.JDateChooser();
         labelEmail = new javax.swing.JLabel();
-        textFieldEmail = new javax.swing.JTextField();
         labelAdmissao = new javax.swing.JLabel();
         dateChooserAdmissao = new com.toedter.calendar.JDateChooser();
         labelCargo = new javax.swing.JLabel();
         comboBoxCargo = new javax.swing.JComboBox<>();
         labelSalario = new javax.swing.JLabel();
-        textFieldSalario = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         rbMasculino = new javax.swing.JRadioButton();
         rbFeminino = new javax.swing.JRadioButton();
+        textFieldNome = new javax.swing.JTextField();
+        textFieldTelefone = new javax.swing.JFormattedTextField();
+        textFieldCpf = new javax.swing.JFormattedTextField();
+        textFieldSalario = new javax.swing.JFormattedTextField();
+        textFieldEmail = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         labelNome.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         labelNome.setText("Nome:");
 
-        textFieldNome.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-
         labelCpf.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         labelCpf.setText("CPF:");
-
-        textFieldCpf.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
         labelDataNasc.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         labelDataNasc.setText("Data de Nascimento:");
@@ -69,12 +70,8 @@ public class CadastroFuncionario extends javax.swing.JDialog {
         labelTelefone.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         labelTelefone.setText("Telefone:");
 
-        textFieldTelefone.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-
         labelEmail.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         labelEmail.setText("Email:");
-
-        textFieldEmail.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
         labelAdmissao.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         labelAdmissao.setText("Admissão:");
@@ -87,8 +84,6 @@ public class CadastroFuncionario extends javax.swing.JDialog {
 
         labelSalario.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         labelSalario.setText("Salário:");
-
-        textFieldSalario.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
         btnConfirmar.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         btnConfirmar.setText("Confirmar");
@@ -113,6 +108,15 @@ public class CadastroFuncionario extends javax.swing.JDialog {
         rbFeminino.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         rbFeminino.setText("Feminino");
 
+        textFieldNome.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+
+        textFieldTelefone.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+
+        textFieldSalario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤#,##0.00"))));
+        textFieldSalario.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+
+        textFieldEmail.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,19 +129,15 @@ public class CadastroFuncionario extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(labelAdmissao)
                                 .addComponent(labelTelefone)
                                 .addComponent(dateChooserDataNascimento, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                                 .addComponent(labelDataNasc)
-                                .addComponent(textFieldTelefone)
                                 .addComponent(dateChooserAdmissao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(labelCpf)
-                                .addComponent(textFieldCpf))
+                                .addComponent(labelCpf))
                             .addComponent(labelNome))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(267, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -145,12 +145,10 @@ public class CadastroFuncionario extends javax.swing.JDialog {
                                 .addComponent(jLabel9))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(labelSalario)
-                                        .addComponent(labelCargo)
-                                        .addComponent(labelEmail)
-                                        .addComponent(comboBoxCargo, 0, 150, Short.MAX_VALUE)
-                                        .addComponent(textFieldSalario))
+                                    .addComponent(labelSalario)
+                                    .addComponent(labelCargo)
+                                    .addComponent(labelEmail)
+                                    .addComponent(comboBoxCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(rbMasculino)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -160,6 +158,15 @@ public class CadastroFuncionario extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnConfirmar)
                         .addGap(18, 18, 18))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(textFieldNome)
+                    .addComponent(textFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,9 +187,9 @@ public class CadastroFuncionario extends javax.swing.JDialog {
                 .addComponent(dateChooserDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelTelefone)
-                .addGap(12, 12, 12)
-                .addComponent(textFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(labelCpf)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -216,6 +223,7 @@ public class CadastroFuncionario extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
@@ -227,9 +235,20 @@ public class CadastroFuncionario extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void formatarCamp(){
+        try{
+            MaskFormatter maskCpf = new MaskFormatter("###.###.###-##");
+            maskCpf.install(textFieldCpf);
+        }catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null,"CPF invalido! Formato Invalido", "ERRO", JOptionPane.ERROR);
+        }
+                try{
+            MaskFormatter maskTelefone = new MaskFormatter("(##)#####-####");
+            maskTelefone.install(textFieldTelefone);
+        }catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null,"Telefone invalido ou em formato incorreto, informe da seguinte maneira (67)00000-0000", "ERRO", JOptionPane.ERROR);
+        }     
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -289,10 +308,10 @@ public class CadastroFuncionario extends javax.swing.JDialog {
     private javax.swing.JLabel labelTelefone;
     private javax.swing.JRadioButton rbFeminino;
     private javax.swing.JRadioButton rbMasculino;
-    private javax.swing.JTextField textFieldCpf;
+    private javax.swing.JFormattedTextField textFieldCpf;
     private javax.swing.JTextField textFieldEmail;
     private javax.swing.JTextField textFieldNome;
-    private javax.swing.JTextField textFieldSalario;
-    private javax.swing.JTextField textFieldTelefone;
+    private javax.swing.JFormattedTextField textFieldSalario;
+    private javax.swing.JFormattedTextField textFieldTelefone;
     // End of variables declaration//GEN-END:variables
 }
