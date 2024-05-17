@@ -1,13 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package persistencias;
 
-/**
- *
- * @author lucas
- */
-public class EstadoDao {
+import java.util.List;
+
+public class EstadoDao extends Dao {
+    private static final EstadoDao instancia = new EstadoDao();
+    
+    private EstadoDao(){}
+    
+    public static EstadoDao getInstancia() {
+        return instancia;
+    }
+    
+    public List listar() {
+        return null;
+    }
     
 }

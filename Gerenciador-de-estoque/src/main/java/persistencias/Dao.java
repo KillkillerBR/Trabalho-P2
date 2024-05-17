@@ -1,13 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package persistencias;
 
-/**
- *
- * @author lucas
- */
-public class Dao {
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+public abstract class Dao {
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_GestaoTrabalho_jar_1.0-SNAPSHOTPU");
+    private EntityManager em = emf.createEntityManager();
+    private EntityTransaction etx = em.getTransaction();
     
+    
+    public void salvar(Object o) {
+        etx.begin();
+        em.persist(o);
+        etx.commit();
+    }
+    
+    public void atualiza(Object o) {
+        etx.begin();
+        em.merge(o);
+        etx.commit();
+    }
+    
+    public void remove(Object o) {
+        etx.begin();
+        em.remove(o);
+        etx.commit();
+    }
+    
+    public abstract List listar();
 }
