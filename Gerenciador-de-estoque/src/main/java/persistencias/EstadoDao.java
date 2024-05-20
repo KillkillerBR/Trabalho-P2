@@ -1,6 +1,7 @@
 package persistencias;
 
 import java.util.List;
+import model.Estado;
 
 public class EstadoDao extends Dao {
     private static final EstadoDao instancia = new EstadoDao();
@@ -12,7 +13,7 @@ public class EstadoDao extends Dao {
     }
     
     public List listar() {
-        return null;
+        return em.createNativeQuery("select * from estado p", Estado.class).getResultList();
     }
     
 }

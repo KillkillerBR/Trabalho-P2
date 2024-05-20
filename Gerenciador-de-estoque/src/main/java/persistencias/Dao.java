@@ -7,9 +7,9 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 public abstract class Dao {
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_GestaoTrabalho_jar_1.0-SNAPSHOTPU");
-    private EntityManager em = emf.createEntityManager();
-    private EntityTransaction etx = em.getTransaction();
+    protected EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_GestaoTrabalho_jar_1.0-SNAPSHOTPU");
+    protected EntityManager em = emf.createEntityManager();
+    protected EntityTransaction etx = em.getTransaction();
     
     
     public void salvar(Object o) {
