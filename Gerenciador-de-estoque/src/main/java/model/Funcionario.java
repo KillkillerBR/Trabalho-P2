@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,11 +24,11 @@ public class Funcionario implements Serializable {
     private Long id;
     private String nomeCompleto;
     private String cpf;
-    private LocalDate nascimento;
+    private Date nascimento;
     private String sexo;
     private String telefone;
     private String email;
-    private String emissao;
+    private Date admissao;
     private String cargo;
     private String funcao;
     private String salario;
