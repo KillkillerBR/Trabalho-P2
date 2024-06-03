@@ -27,7 +27,7 @@ public class Funcionario implements Serializable {
     private String sexo;
     private String telefone;
     private String email;
-    private String emissao;
+    private LocalDate admissao;
     private String cargo;
     private String funcao;
     private String salario;
