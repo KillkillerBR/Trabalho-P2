@@ -9,7 +9,7 @@ package DTO;
  * @author lucas
  */
 public abstract class DTO {
-    String id;
+    public String id;
     
     public abstract Object builder();
 }

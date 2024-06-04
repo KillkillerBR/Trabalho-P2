@@ -3,7 +3,8 @@ package unigran.controllers;
 import java.util.List;
 import model.Estoque;
 import persistencias.EstoqueDao;
-import unigran.dto.DTO;
+import DTO.DTO;
+import DTO.EstoqueDTO;
 
 
 public class EstoqueController implements Controller {
@@ -20,13 +21,13 @@ public class EstoqueController implements Controller {
     @Override
     public Object[] getDados(DTO o) {
         EstoqueDTO dto = (EstoqueDTO) o;
-        return new Object[]{dto.id, dto.nomeFuncionario};
+        return new Object[]{dto.id, dto.estoqueAtual};
     }
 
     @Override
     public List getListaDados() {
         List<Estoque> dados = EstoqueDao.getInstancia().listar();
-        EstoqueDTO funcionarioDTO = new EstoqueDTO();
+        EstoqueDTO estoqueDTO = new EstoqueDTO();
         return estoqueDTO.getListaDados(dados);
     }
 

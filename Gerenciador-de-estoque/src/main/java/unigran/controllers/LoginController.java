@@ -4,7 +4,8 @@ package unigran.controllers;
 import java.util.List;
 import model.Login;
 import persistencias.LoginDao;
-import unigran.dto.DTO;
+import DTO.DTO;
+import DTO.LoginDTO;
 
 public class LoginController implements Controller {
         @Override
@@ -25,8 +26,8 @@ public class LoginController implements Controller {
     @Override
     public List getListaDados() {
         List<Login> dados = LoginDao.getInstancia().listar();
-        LoginDTO entradaDTO = new LoginDTO();
-        return entradaDTO.getListaDados(dados);
+        LoginDTO loginDTO = new LoginDTO();
+        return loginDTO.getListaDados(dados);
     }
 
     @Override

@@ -4,15 +4,25 @@
  */
 package unigran.view;
 
+import DTO.DTO;
+import DTO.RegistroDTO;
+import unigran.controllers.RegistroController;
+
 /**
  *
  * @author Jhonatan-OM
  */
 public class CriarLogin extends javax.swing.JDialog {
+    RegistroDTO r;
 
-    /**
-     * Creates new form Login
-     */
+    public DTO salvar() {
+            if(r==null)
+                r= new RegistroDTO();
+            r.login.setNome(jLoginField.getText());
+            r.login.setSenha(jPasswordField.getText());
+            return r;
+      
+    }
     public CriarLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -30,14 +40,14 @@ public class CriarLogin extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jLoginField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         SenhaCheckBox = new javax.swing.JCheckBox();
-        PasswordField = new javax.swing.JPasswordField();
-        ConfirmPasswordField = new javax.swing.JPasswordField();
+        jPasswordField = new javax.swing.JPasswordField();
+        jConfirmPasswordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(153, 153, 255));
@@ -49,7 +59,7 @@ public class CriarLogin extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel3.setText("Login:");
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLoginField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Senha:");
@@ -60,10 +70,20 @@ public class CriarLogin extends javax.swing.JDialog {
         jButton1.setBackground(new java.awt.Color(153, 153, 153));
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jButton1.setText("Confirmar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(153, 153, 153));
         jButton2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         SenhaCheckBox.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         SenhaCheckBox.setText("Mostrar senha");
@@ -92,9 +112,9 @@ public class CriarLogin extends javax.swing.JDialog {
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel5)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                .addComponent(PasswordField)
-                                .addComponent(ConfirmPasswordField)))))
+                                .addComponent(jLoginField, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                .addComponent(jPasswordField)
+                                .addComponent(jConfirmPasswordField)))))
                 .addContainerGap(66, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -113,15 +133,15 @@ public class CriarLogin extends javax.swing.JDialog {
                 .addGap(33, 33, 33)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLoginField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ConfirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jConfirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SenhaCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
@@ -136,13 +156,21 @@ public class CriarLogin extends javax.swing.JDialog {
 
     private void SenhaCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SenhaCheckBoxActionPerformed
         if(SenhaCheckBox.isSelected()){
-            PasswordField.setEchoChar((char)0);
-            ConfirmPasswordField.setEchoChar((char)0);
+            jPasswordField.setEchoChar((char)0);
+            jConfirmPasswordField.setEchoChar((char)0);
         }else{
-            PasswordField.setEchoChar('*');
-            ConfirmPasswordField.setEchoChar('*');
+            jPasswordField.setEchoChar('*');
+            jConfirmPasswordField.setEchoChar('*');
         }
     }//GEN-LAST:event_SenhaCheckBoxActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        r.salvar(dto);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,16 +216,16 @@ public class CriarLogin extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField ConfirmPasswordField;
-    private javax.swing.JPasswordField PasswordField;
     private javax.swing.JCheckBox SenhaCheckBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JPasswordField jConfirmPasswordField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jLoginField;
+    private javax.swing.JPasswordField jPasswordField;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,7 +12,7 @@ import model.Registro;
 
 public class EntradaDTO extends DTO {
     private LocalDateTime data;
-    private String secao;
+    public String secao;
     private List<CodigoBarras> codigosDeBarras;
     private Estoque estoque;
     private Login login;

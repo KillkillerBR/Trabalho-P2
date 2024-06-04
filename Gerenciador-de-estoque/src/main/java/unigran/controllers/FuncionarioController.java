@@ -3,8 +3,9 @@ import java.util.List;
 import model.Funcionario;
 import persistencias.Dao;
 import persistencias.FuncionarioDao;
-import unigran.dto.DTO;
-import unigran.dto.FuncionarioDTO;
+import DTO.DTO;
+import DTO.FuncionarioDTO;
+
 
 public class FuncionarioController implements Controller {
 
@@ -20,7 +21,7 @@ public class FuncionarioController implements Controller {
     @Override
     public Object[] getDados(DTO o) {
         FuncionarioDTO dto = (FuncionarioDTO) o;
-        return new Object[]{dto.id, dto.estoqueAtual};
+        return new Object[]{dto.id, dto.nomeCompleto};
     }
 
     @Override

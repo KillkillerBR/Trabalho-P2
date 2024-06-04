@@ -1,7 +1,10 @@
 package unigran.controllers;
+import DTO.DTO;
+import DTO.ProdutoDTO;
 import java.util.List;
+import model.Produto;
 import persistencias.ProdutoDao;
-import unigran.dto.DTO;
+
 
 public class ProdutoController implements Controller {
 

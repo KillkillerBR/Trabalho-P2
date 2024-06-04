@@ -12,7 +12,7 @@ import model.Saida;
 
 public class SaidaDTO extends DTO {
     private LocalDateTime data;
-    private String motivo;
+    public String motivo;
     private Estoque estoque;
     private List<CodigoBarras> codigosDeBarras;
     private NotaFiscal notaFiscal;

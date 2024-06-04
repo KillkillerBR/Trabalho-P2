@@ -1,6 +1,6 @@
 package unigran.controllers;
 import java.util.List;
-import unigran.dto.DTO;
+import DTO.DTO;
 
 
 public interface Controller {

@@ -1,8 +1,9 @@
 package unigran.controllers;
-
+import DTO.DTO;
 import java.util.List;
 import persistencias.EntradaDao;
-import unigran.dto.DTO;
+import DTO.EntradaDTO;
+import model.Entrada;
 
 
 public class EntradaController implements Controller {

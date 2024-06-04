@@ -8,7 +8,7 @@ import model.NotaFiscal;
 import model.Saida;
 
 public class NotaFiscalDTO extends DTO {
-    private String cnpj;
+    public String cnpj;
     private String empresa;
     private Entrada entrada;
     private Saida saida;

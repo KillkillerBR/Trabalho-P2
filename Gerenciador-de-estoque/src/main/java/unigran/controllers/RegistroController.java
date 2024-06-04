@@ -1,9 +1,11 @@
 package unigran.controllers;
 
+import DTO.DTO;
+import DTO.RegistroDTO;
 import java.util.List;
 import model.Registro;
 import persistencias.RegistroDao;
-import unigran.dto.DTO;
+
 
 
 public class RegistroController implements Controller {
@@ -19,14 +21,14 @@ public class RegistroController implements Controller {
     @Override
     public Object[] getDados(DTO o) {
         RegistroDTO dto = (RegistroDTO) o;
-        return new Object[]{dto.id, dto.login};
+        return new Object[]{dto.id, dto.dataAcessoEntrada};
     }
 
     @Override
     public List getListaDados() {
         List<Registro> dados = RegistroDao.getInstancia().listar();
-        RegistroDTO entradaDTO = new RegistroDTO();
-        return entradaDTO.getListaDados(dados);
+        RegistroDTO registroDTO = new RegistroDTO();
+        return registroDTO.getListaDados(dados);
     }
 
     @Override

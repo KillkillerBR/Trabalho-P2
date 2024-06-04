@@ -7,11 +7,11 @@ import model.Login;
 import model.Registro;
 
 public class RegistroDTO extends DTO {
-    private LocalDateTime dataAcessoEntrada;
+    public LocalDateTime dataAcessoEntrada;
     private LocalDateTime dataEntradaProduto;
     private LocalDateTime dataAcessoSaida;
     private LocalDateTime dataSaidaProduto;
-    private Login login;
+    public Login login;
     
     @Override
     public Registro builder() {

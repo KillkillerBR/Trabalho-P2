@@ -11,7 +11,7 @@ import model.Saida;
 import model.Validade;
 
 public class ProdutoDTO extends DTO {
-    private String marca;
+    public String marca;
     private String categoria;
     private Integer quantidadeRecebida;
     private Float precoProducao;

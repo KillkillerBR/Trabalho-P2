@@ -5,7 +5,7 @@ import java.util.List;
 import model.Estoque;
 
 public class EstoqueDTO extends DTO {
-    private Integer estoqueAtual;
+    public Integer estoqueAtual;
     private Integer estoqueAnterior;
     private Integer quantidadeEntrada;
     private Integer quantidadeSaida;

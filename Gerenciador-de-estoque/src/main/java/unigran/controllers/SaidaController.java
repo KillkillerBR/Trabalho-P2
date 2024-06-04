@@ -1,9 +1,11 @@
 package unigran.controllers;
 
+import DTO.DTO;
+import DTO.SaidaDTO;
 import java.util.List;
 import model.Saida;
 import persistencias.SaidaDao;
-import unigran.dto.DTO;
+
 
 
 public class SaidaController implements Controller {
@@ -19,7 +21,7 @@ public class SaidaController implements Controller {
     @Override
     public Object[] getDados(DTO o) {
         SaidaDTO dto = (SaidaDTO) o;
-        return new Object[]{dto.id, dto.secao};
+        return new Object[]{dto.id, dto.motivo};
     }
 
     @Override

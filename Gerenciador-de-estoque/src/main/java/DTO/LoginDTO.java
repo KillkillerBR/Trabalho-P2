@@ -7,7 +7,7 @@ import model.Funcionario;
 import model.Login;
 
 public class LoginDTO extends DTO {
-    private String nome;
+    public String nome;
     private String senha;
     private Estoque estoque;
     private Funcionario funcionario;
