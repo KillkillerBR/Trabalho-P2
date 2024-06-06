@@ -21,7 +21,7 @@ public class Funcionario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String nomeCompleto;
+    private String nome;
     private String cpf;
     private LocalDate nascimento;
     private String sexo;

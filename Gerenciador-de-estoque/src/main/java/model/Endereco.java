@@ -19,12 +19,12 @@ public class Endereco implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String logradouro;
+    private String rua;
     private String cep;
     private Cidade cidade;
     
-    public Endereco(String logradouro, String cep, Cidade cidade) {
-        this.logradouro = logradouro;
+    public Endereco(String rua, String cep, Cidade cidade) {
+        this.rua = rua;
         this.cep = cep;
         this.cidade = cidade;
     }

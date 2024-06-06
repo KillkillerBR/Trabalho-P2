@@ -11,19 +11,20 @@ import model.Saida;
 import model.Validade;
 
 public class ProdutoDTO extends DTO {
+    public String nome;
     public String marca;
-    private String categoria;
-    private Integer quantidadeRecebida;
-    private Float precoProducao;
-    private Float precoVenda;
-    private String fornecedor;
-    private LocalDateTime dataValidadeEmbalagem;
-    private Integer quantidadeMinima;
-    private CodigoBarras codigoDeBarras;
-    private Validade validade;
-    private Entrada entrada;
-    private Saida saida;
-    private Estoque estoque;
+    public String categoria;
+    public Integer quantidadeRecebida;
+    public Float precoCusto;
+    public Float precoVenda;
+    public String fornecedor;
+    public LocalDateTime dataValidadeEmbalagem;
+    public Integer quantidadeMinima;
+    public CodigoBarras codigoDeBarras;
+    public Validade validade;
+    public Entrada entrada;
+    public Saida saida;
+    public Estoque estoque;
     
     @Override
     public Produto builder() {
@@ -35,7 +36,8 @@ public class ProdutoDTO extends DTO {
         produto.setEstoque(estoque);
         produto.setFornecedor(fornecedor);
         produto.setMarca(marca);
-        produto.setPrecoProducao(precoProducao);
+        produto.setNome(nome);
+        produto.setPrecoCusto(precoCusto);
         produto.setPrecoVenda(precoVenda);
         produto.setQuantidadeMinima(quantidadeMinima);
         produto.setQuantidadeRecebida(quantidadeRecebida);
@@ -55,7 +57,8 @@ public class ProdutoDTO extends DTO {
         dto.fornecedor = p.getFornecedor();
         dto.id = p.getId().toString();
         dto.marca = p.getMarca();
-        dto.precoProducao = p.getPrecoProducao();
+        dto.nome = p.getNome();
+        dto.precoCusto = p.getPrecoCusto();
         dto.precoVenda = p.getPrecoVenda();
         dto.quantidadeMinima = p.getQuantidadeMinima();
         dto.quantidadeRecebida = p.getQuantidadeRecebida();

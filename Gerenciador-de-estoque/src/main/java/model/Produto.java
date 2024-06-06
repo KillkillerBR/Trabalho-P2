@@ -21,10 +21,11 @@ public class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    public String nome;
     private String marca;
     private String categoria;
     private Integer quantidadeRecebida;
-    private Float precoProducao;
+    private Float precoCusto;
     private Float precoVenda;
     private String fornecedor;
     private LocalDateTime dataValidadeEmbalagem;

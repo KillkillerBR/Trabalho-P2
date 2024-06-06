@@ -6,7 +6,7 @@ import model.Cidade;
 import model.Endereco;
 
 public class EnderecoDTO extends DTO {
-    private String logradouro;
+    private String rua;
     private String cep;
     private Cidade cidade;
     
@@ -14,7 +14,7 @@ public class EnderecoDTO extends DTO {
     public Endereco builder() {
         Endereco endereco = new Endereco();
         endereco.setId(id!=null?Long.valueOf(id):1);
-        endereco.setLogradouro(logradouro);
+        endereco.setRua(rua);
         endereco.setCep(cep);
         endereco.setCidade(cidade);
         return endereco;
@@ -24,7 +24,7 @@ public class EnderecoDTO extends DTO {
         EnderecoDTO dto = new EnderecoDTO();
         dto.id = e.getId().toString();
         dto.cep = e.getCep();
-        dto.logradouro = e.getLogradouro();
+        dto.rua = e.getRua();
         dto.cidade = e.getCidade();
         return dto;
     }

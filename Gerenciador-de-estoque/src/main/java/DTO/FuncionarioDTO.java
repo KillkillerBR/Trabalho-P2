@@ -8,17 +8,17 @@ import model.Login;
 
 
 public class FuncionarioDTO extends DTO {
-    public String nomeCompleto;
-    private String cpf;
-    private LocalDate nascimento;
-    private String sexo;
-    private String telefone;
-    private String email;
-    private LocalDate admissao;
-    private String cargo;
-    private String funcao;
-    private String salario;
-    private Endereco endereco;
+    public String nome;
+    public String cpf;
+    public LocalDate nascimento;
+    public String sexo;
+    public String telefone;
+    public String email;
+    public LocalDate admissao;
+    public String cargo;
+    public String funcao;
+    public String salario;
+    public Endereco endereco;
     private Login login;
     
     @Override
@@ -33,7 +33,7 @@ public class FuncionarioDTO extends DTO {
         funcionario.setFuncao(funcao);
         funcionario.setLogin(login);
         funcionario.setNascimento(nascimento);
-        funcionario.setNomeCompleto(nomeCompleto);
+        funcionario.setNome(nome);
         funcionario.setSalario(salario);
         funcionario.setSexo(sexo);
         funcionario.setTelefone(telefone);
@@ -51,7 +51,7 @@ public class FuncionarioDTO extends DTO {
         dto.id = f.getId().toString();
         dto.login = f.getLogin();
         dto.nascimento = f.getNascimento();
-        dto.nomeCompleto = f.getNomeCompleto();
+        dto.nome = f.getNome();
         dto.salario = f.getSalario();
         dto.sexo = f.getSexo();
         dto.telefone = f.getTelefone();
