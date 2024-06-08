@@ -12,6 +12,7 @@ public class ProdutoController implements Controller {
     public void salvar(DTO dto) throws Exception {
         ProdutoDao.getInstancia().salvar(dto);
     }
+    
         @Override
     public String[] getTitulosColunas() {
         return new String[]{"id", "Nome"};

@@ -1,4 +1,3 @@
-
 package unigran.controllers;
 
 import java.util.List;
@@ -8,11 +7,18 @@ import DTO.DTO;
 import DTO.LoginDTO;
 
 public class LoginController implements Controller {
-        @Override
-    public void salvar(DTO dto) throws Exception {
-        LoginDao.getInstancia().salvar(dto);
+    private LoginDao loginDao;
+
+    public LoginController() {
+        loginDao = LoginDao.getInstancia();
     }
-        @Override
+
+    @Override
+    public void salvar(DTO dto) throws Exception {
+        loginDao.salvar(dto);
+    }
+
+    @Override
     public String[] getTitulosColunas() {
         return new String[]{"id", "Nome"};
     }
@@ -25,13 +31,17 @@ public class LoginController implements Controller {
 
     @Override
     public List getListaDados() {
-        List<Login> dados = LoginDao.getInstancia().listar();
+        List<Login> dados = loginDao.listar();
         LoginDTO loginDTO = new LoginDTO();
         return loginDTO.getListaDados(dados);
     }
 
     @Override
     public void remover(DTO dto) {
-        LoginDao.getInstancia().remove(dto);
+        loginDao.remove(dto);
+    }
+
+    public Login buscarPorNomeESenha(String nome, String senha) {
+        return loginDao.buscarPorNomeESenha(nome, senha);
     }
 }

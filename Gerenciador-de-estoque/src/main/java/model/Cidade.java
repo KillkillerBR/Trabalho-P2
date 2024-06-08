@@ -27,9 +27,8 @@ public class Cidade implements Serializable {
         this.estado = estado;
     }
     
-    @Override
+  @Override
     public String toString() {
-        return "model.Cidade[ id=" + id + " ]";
+        return nome;
     }
-    
 }

@@ -1,36 +1,53 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package unigran.view;
 
 import DTO.DTO;
 import DTO.ProdutoDTO;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
 import javax.swing.JOptionPane;
-import unigran.controllers.ProdutoController;
 
-
-public class CadastroProduto extends javax.swing.JFrame {
-    ProdutoController controller;
+/**
+ *
+ * @author Jhonatan-OM
+ */
+public class AlterarProduto extends javax.swing.JFrame {
     ProdutoDTO r;
-
-    public CadastroProduto() {
+    ProdutoController controller;
+    /**
+     * Creates new form AlterarProduto
+     */
+    public AlterarProduto() {
         initComponents();
     }
-    public DTO salvar() {
+     public DTO alterar() {
             r= new ProdutoDTO();
             r.builder().setNome(jNomeField.getText());
             r.builder().setMarca(jMarcaField.getText());
             r.builder().setCategoria(jCategoriaField.getText());
-            float precoCusto = ((Number) jPrecoCustoField.getValue()).floatValue();//falta tratar caso o usuario digite um valor invalido
+            float precoCusto = ((Number) jPrecoCustoField.getValue()).floatValue();
             float precoVenda = ((Number) jPrecoVendaField.getValue()).floatValue();
             r.builder().setPrecoCusto(precoCusto);
             r.builder().setPrecoVenda(precoVenda);
-            Date date = jDateValidade.getDate();
-            LocalDateTime localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-            r.builder().setDataValidadeEmbalagem(localDateTime);
-            r.builder().setFornecedor(jFornecedorField.getText());
+            r.builder().setNome(jFornecedorField.getText());
             return r;
     }
+
+      public DTO alterar() {
+            r= new ProdutoDTO();
+            r.builder().setNome(jNomeField.getText());
+            r.builder().setMarca(jMarcaField.getText());
+            r.builder().setCategoria(jCategoriaField.getText());
+            float precoCusto = ((Number) jPrecoCustoField.getValue()).floatValue();
+            float precoVenda = ((Number) jPrecoVendaField.getValue()).floatValue();
+            r.builder().setPrecoCusto(precoCusto);
+            r.builder().setPrecoVenda(precoVenda);
+            r.builder().setNome(jFornecedorField.getText());
+            return r;
+    }
+
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -38,38 +55,47 @@ public class CadastroProduto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jMarcaField = new javax.swing.JTextField();
+        jPrecoCustoField = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
+        jPrecoVendaField = new javax.swing.JFormattedTextField();
         jNomeField = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jFornecedorField = new javax.swing.JTextField();
         jCategoriaField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jDateValidade = new com.toedter.calendar.JDateChooser();
-        jPrecoCustoField = new javax.swing.JFormattedTextField();
-        jPrecoVendaField = new javax.swing.JFormattedTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jFornecedorField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
-        jLabel1.setText("Cadastro de Produto");
+        jLabel1.setText("Alterar Produto");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("Marca:");
 
         jMarcaField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
+        jPrecoCustoField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        jPrecoCustoField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel3.setText("Nome:");
 
+        jPrecoVendaField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        jPrecoVendaField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+
         jNomeField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel9.setText("Fornecedor:");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Categoria:");
+
+        jFornecedorField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
         jCategoriaField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
@@ -95,28 +121,10 @@ public class CadastroProduto extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel8.setText("Data de validade:");
-
-        jPrecoCustoField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
-        jPrecoCustoField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-
-        jPrecoVendaField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
-        jPrecoVendaField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel9.setText("Fornecedor:");
-
-        jFornecedorField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(142, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(232, 232, 232))
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +147,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                                     .addComponent(jCategoriaField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jMarcaField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(91, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
@@ -147,18 +155,20 @@ public class CadastroProduto extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jFornecedorField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jPrecoVendaField, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDateValidade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                    .addComponent(jPrecoVendaField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                                     .addComponent(jPrecoCustoField, javax.swing.GroupLayout.Alignment.LEADING))))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(174, 174, 174))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jNomeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,17 +189,14 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPrecoVendaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateValidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addGap(2, 2, 2)
+                .addComponent(jFornecedorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConfirmar)
-                    .addComponent(btnCancelar)
-                    .addComponent(jFornecedorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addComponent(btnCancelar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -197,9 +204,9 @@ public class CadastroProduto extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         try {
-            controller.salvar(r);
+            controller.alterar(r);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage()); 
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
@@ -207,7 +214,9 @@ public class CadastroProduto extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -222,21 +231,20 @@ public class CadastroProduto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AlterarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AlterarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AlterarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AlterarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
-                new CadastroProduto().setVisible(true);
+                new AlterarProduto().setVisible(true);
             }
         });
     }
@@ -245,7 +253,6 @@ public class CadastroProduto extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JTextField jCategoriaField;
-    private com.toedter.calendar.JDateChooser jDateValidade;
     private javax.swing.JTextField jFornecedorField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -253,7 +260,6 @@ public class CadastroProduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jMarcaField;
     private javax.swing.JTextField jNomeField;
