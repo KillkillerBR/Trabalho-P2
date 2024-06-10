@@ -10,7 +10,7 @@ import persistencias.ProdutoDao;
 public class ProdutoController implements Controller {
 
 
-    public void salvar(ProdutoDTO produtoDTO) throws Exception {
+    public void salvar(Produto produtoDTO) throws Exception {
         ProdutoDao.getInstancia().salvar(produtoDTO);
     }
     
@@ -35,8 +35,8 @@ public class ProdutoController implements Controller {
         ProdutoDao.getInstancia().remove(dto);
     }
     
-    public void atualizar(ProdutoDTO dto) {
-        ProdutoDao.getInstancia().atualiza(dto);
+    public void atualizar(Produto produtoDTO) throws Exception  {
+        ProdutoDao.getInstancia().atualiza(produtoDTO);
     }
     
     public List listar() {

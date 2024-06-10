@@ -1,24 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package unigran.view;
 
 
 import DTO.ProdutoDTO;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import javax.swing.JOptionPane;
+import model.Produto;
 import unigran.controllers.ProdutoController;
 
 
 public class AlterarProduto extends javax.swing.JFrame {
-    ProdutoDTO r;
+    Produto r;
     ProdutoController controller;
     ProdutoDTO produtoExibir;
-    
  
     public AlterarProduto(ProdutoDTO produto) {
         initComponents();
         produtoExibir = produto;
+        this.controller = new ProdutoController();
         exibir();
         
     }
@@ -32,16 +31,25 @@ public class AlterarProduto extends javax.swing.JFrame {
          
     }
 
-      public ProdutoDTO alterar() {
-            r= new ProdutoDTO();
-            r.builder().setNome(jNomeField.getText());
-            r.builder().setMarca(jMarcaField.getText());
-            r.builder().setCategoria(jCategoriaField.getText());
-            float precoCusto = ((Number) jPrecoCustoField.getValue()).floatValue();
-            float precoVenda = ((Number) jPrecoVendaField.getValue()).floatValue();
-            r.builder().setPrecoCusto(precoCusto);
-            r.builder().setPrecoVenda(precoVenda);
-            r.builder().setNome(jFornecedorField.getText());
+      public Produto alterar() throws Exception {
+            r= produtoExibir.builder();
+            r.setNome(jNomeField.getText());
+            r.setMarca(jMarcaField.getText());
+            r.setCategoria(jCategoriaField.getText());
+         if (jPrecoCustoField.getText().isEmpty() || jPrecoVendaField.getText().isEmpty()) {
+            r.setPrecoCusto(produtoExibir.precoCusto);
+            r.setPrecoVenda(produtoExibir.precoVenda);
+        }
+
+        try {
+            float precoCusto = NumberFormat.getInstance().parse(jPrecoCustoField.getText()).floatValue();
+            float precoVenda = NumberFormat.getInstance().parse(jPrecoVendaField.getText()).floatValue();
+            r.setPrecoCusto(precoCusto);
+            r.setPrecoVenda(precoVenda);
+        } catch (ParseException e) {
+            throw new Exception("Erro ao converter os preços.");
+        }
+            r.setFornecedor(jFornecedorField.getText());
             return r;
     }
 
@@ -76,13 +84,13 @@ public class AlterarProduto extends javax.swing.JFrame {
 
         jMarcaField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
-        jPrecoCustoField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        jPrecoCustoField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         jPrecoCustoField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel3.setText("Nome:");
 
-        jPrecoVendaField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        jPrecoVendaField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         jPrecoVendaField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
         jNomeField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
@@ -201,10 +209,16 @@ public class AlterarProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        try {
-            controller.atualizar(r);
+     try {
+            Produto produto = alterar();
+            if (controller != null) {
+                controller.atualizar(produto);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Controller is null", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
