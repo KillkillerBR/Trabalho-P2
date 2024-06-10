@@ -1,13 +1,21 @@
 package unigran.view;
+import DTO.DTO;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import DTO.ProdutoDTO;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import unigran.controllers.ProdutoController;
 
 public class Principal extends javax.swing.JFrame {
-
+    private ProdutoController produtoController;
+     private ProdutoDTO produtoSelecionado;
 
     public Principal() {
         initComponents();
+        produtoSelecionado = new ProdutoDTO();
+        produtoController = new ProdutoController();
+        atualizaTabela();
     }
 
 
@@ -43,6 +51,11 @@ public class Principal extends javax.swing.JFrame {
         btnRemover.setText("Remover");
 
         btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnEntrada.setText("Entradas");
 
@@ -122,46 +135,66 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void atualizaTabela() {
+        List<ProdutoDTO> dados = produtoController.getListaDados();
+        String[] colunas = {"ID", "Nome", "Marca", "Categoria", "Quantidade Recebida", "Preço Custo", "Preço Venda"};
+        Object[][] data = new Object[dados.size()][colunas.length];
+        
+        for (int i = 0; i < dados.size(); i++) {
+            ProdutoDTO produto = dados.get(i);
+            data[i][0] = produto.builder().getNome();
+            data[i][1] = produto.builder().getMarca();
+            data[i][2] = produto.builder().getCategoria();
+            data[i][3] = produto.builder().getQuantidadeRecebida();
+            data[i][4] = produto.builder().getPrecoCusto();
+            data[i][5] = produto.builder().getPrecoVenda();
+        }
+
+        DefaultTableModel model = new DefaultTableModel(data, colunas);
+        jTable1.setModel(model);
+        jTable1.getSelectionModel().addListSelectionListener(event -> {
+        if (!event.getValueIsAdjusting()) {
+            int selectedRow = jTable1.getSelectedRow();
+            if (selectedRow >= 0) {
+                produtoSelecionado = dados.get(selectedRow);
+            }
+        }
+    });
+    }
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
             CadastroProduto produto = new CadastroProduto();
             produto.setVisible(true);
+            //ATUALIZAR TABELA APOS A TELA DE CADASTRO FECHAR
+            produto.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+                public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                atualizaTabela();
+        }
+    });
     }//GEN-LAST:event_btnNovoActionPerformed
-
+    public void exibir() {
+         List <ProdutoDTO> listProdutos = produtoController.listar();
+         
+    }
     private void btnEntrada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrada1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEntrada1ActionPerformed
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Principal().setVisible(true);
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+       if (produtoSelecionado != null) {
+        AlterarProduto alterarProduto = new AlterarProduto(produtoSelecionado);
+        alterarProduto.setVisible(true);
+        alterarProduto.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                atualizaTabela();
             }
         });
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor, selecione um produto na tabela.");
     }
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

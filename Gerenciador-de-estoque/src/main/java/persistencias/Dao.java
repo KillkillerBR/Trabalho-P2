@@ -7,7 +7,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 public abstract class Dao {
-    protected EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_GestaoTrabalho_jar_1.0-SNAPSHOTPU");
+    protected EntityManagerFactory emf = Persistence.createEntityManagerFactory("Unigran_Gerenciador-de-estoque_jar_1.0-SNAPSHOTPU");
     protected EntityManager em = emf.createEntityManager();
     protected EntityTransaction etx = em.getTransaction();
     

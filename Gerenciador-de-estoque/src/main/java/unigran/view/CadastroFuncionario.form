@@ -65,10 +65,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="rbFeminino" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="labelEmail" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="labelEmail" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jEmailField" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
                           <Component id="labelDataNasc" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jDateNascimento" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>

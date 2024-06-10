@@ -15,13 +15,14 @@ public class CadastroProduto extends javax.swing.JFrame {
 
     public CadastroProduto() {
         initComponents();
+        this.controller = new ProdutoController();
     }
-    public DTO salvar() {
+    public ProdutoDTO salvar() {
             r= new ProdutoDTO();
             r.builder().setNome(jNomeField.getText());
             r.builder().setMarca(jMarcaField.getText());
             r.builder().setCategoria(jCategoriaField.getText());
-            float precoCusto = ((Number) jPrecoCustoField.getValue()).floatValue();//falta tratar caso o usuario digite um valor invalido
+            float precoCusto = ((Number) jPrecoCustoField.getValue()).floatValue();
             float precoVenda = ((Number) jPrecoVendaField.getValue()).floatValue();
             r.builder().setPrecoCusto(precoCusto);
             r.builder().setPrecoVenda(precoVenda);
@@ -53,7 +54,7 @@ public class CadastroProduto extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jFornecedorField = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel1.setText("Cadastro de Produto");
@@ -98,10 +99,10 @@ public class CadastroProduto extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel8.setText("Data de validade:");
 
-        jPrecoCustoField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        jPrecoCustoField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         jPrecoCustoField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
-        jPrecoVendaField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        jPrecoVendaField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         jPrecoVendaField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -197,7 +198,8 @@ public class CadastroProduto extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         try {
-            controller.salvar(r);
+            ProdutoDTO produtoDTO = salvar();
+            controller.salvar(produtoDTO);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage()); 
         }
@@ -208,38 +210,7 @@ public class CadastroProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new CadastroProduto().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

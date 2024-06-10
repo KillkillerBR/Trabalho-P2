@@ -4,37 +4,35 @@
  */
 package unigran.view;
 
-import DTO.DTO;
+
 import DTO.ProdutoDTO;
 import javax.swing.JOptionPane;
+import unigran.controllers.ProdutoController;
 
-/**
- *
- * @author Jhonatan-OM
- */
+
 public class AlterarProduto extends javax.swing.JFrame {
     ProdutoDTO r;
     ProdutoController controller;
-    /**
-     * Creates new form AlterarProduto
-     */
-    public AlterarProduto() {
+    ProdutoDTO produtoExibir;
+    
+ 
+    public AlterarProduto(ProdutoDTO produto) {
         initComponents();
+        produtoExibir = produto;
+        exibir();
+        
     }
-     public DTO alterar() {
-            r= new ProdutoDTO();
-            r.builder().setNome(jNomeField.getText());
-            r.builder().setMarca(jMarcaField.getText());
-            r.builder().setCategoria(jCategoriaField.getText());
-            float precoCusto = ((Number) jPrecoCustoField.getValue()).floatValue();
-            float precoVenda = ((Number) jPrecoVendaField.getValue()).floatValue();
-            r.builder().setPrecoCusto(precoCusto);
-            r.builder().setPrecoVenda(precoVenda);
-            r.builder().setNome(jFornecedorField.getText());
-            return r;
+     public void exibir() {
+         jNomeField.setText(produtoExibir.nome);
+         jFornecedorField.setText(produtoExibir.fornecedor);
+         jCategoriaField.setText(produtoExibir.categoria);
+         jMarcaField.setText(produtoExibir.marca);
+         jPrecoCustoField.setText(produtoExibir.precoCusto.toString());
+         jPrecoVendaField.setText(produtoExibir.precoVenda.toString());
+         
     }
 
-      public DTO alterar() {
+      public ProdutoDTO alterar() {
             r= new ProdutoDTO();
             r.builder().setNome(jNomeField.getText());
             r.builder().setMarca(jMarcaField.getText());
@@ -68,7 +66,7 @@ public class AlterarProduto extends javax.swing.JFrame {
         btnConfirmar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel1.setText("Alterar Produto");
@@ -204,7 +202,7 @@ public class AlterarProduto extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         try {
-            controller.alterar(r);
+            controller.atualizar(r);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
@@ -214,40 +212,6 @@ public class AlterarProduto extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AlterarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AlterarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AlterarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AlterarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AlterarProduto().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

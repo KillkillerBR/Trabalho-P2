@@ -1,6 +1,7 @@
 package unigran.controllers;
 import DTO.DTO;
 import DTO.ProdutoDTO;
+import java.util.LinkedList;
 import java.util.List;
 import model.Produto;
 import persistencias.ProdutoDao;
@@ -8,9 +9,9 @@ import persistencias.ProdutoDao;
 
 public class ProdutoController implements Controller {
 
-    @Override
-    public void salvar(DTO dto) throws Exception {
-        ProdutoDao.getInstancia().salvar(dto);
+
+    public void salvar(ProdutoDTO produtoDTO) throws Exception {
+        ProdutoDao.getInstancia().salvar(produtoDTO);
     }
     
         @Override
@@ -18,8 +19,7 @@ public class ProdutoController implements Controller {
         return new String[]{"id", "Nome"};
     }
 
-    @Override
-    public Object[] getDados(DTO o) {
+    public Object[] getDados(ProdutoDTO o) {
         ProdutoDTO dto = (ProdutoDTO) o;
         return new Object[]{dto.id, dto.marca};
     }
@@ -31,8 +31,33 @@ public class ProdutoController implements Controller {
         return produtoDTO.getListaDados(dados);
     }
 
-    @Override
-    public void remover(DTO dto) {
+    public void remover(ProdutoDTO dto) {
         ProdutoDao.getInstancia().remove(dto);
     }
+    
+    public void atualizar(ProdutoDTO dto) {
+        ProdutoDao.getInstancia().atualiza(dto);
+    }
+    
+    public List listar() {
+        List<Produto> produtos = ProdutoDao.getInstancia().listar();
+        ProdutoDTO dto = new ProdutoDTO();
+        return dto.getListaDados(produtos);
+    }
+
+    @Override
+    public Object[] getDados(DTO dto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void remover(DTO dto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void salvar(DTO dto) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
 }

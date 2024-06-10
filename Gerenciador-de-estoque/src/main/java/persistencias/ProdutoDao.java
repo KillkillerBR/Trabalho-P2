@@ -13,6 +13,6 @@ public class ProdutoDao extends Dao {
     }
     
     public List listar() {
-        return em.createNativeQuery("select * from cidade p", Produto.class).getResultList();
+        return em.createNativeQuery("select * from produto p", Produto.class).getResultList();
     }
 }
