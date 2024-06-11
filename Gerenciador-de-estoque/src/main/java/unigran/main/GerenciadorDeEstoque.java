@@ -1,5 +1,5 @@
 package unigran.main;
-import unigran.view.Inicio;
+import unigran.view.RemoverProduto;
 import unigran.view.Principal;
 public class GerenciadorDeEstoque {
 

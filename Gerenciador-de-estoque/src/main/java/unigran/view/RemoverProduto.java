@@ -8,12 +8,12 @@ package unigran.view;
  *
  * @author Jhonatan-OM
  */
-public class Inicio extends javax.swing.JPanel {
+public class RemoverProduto extends javax.swing.JPanel {
 
     /**
      * Creates new form Inicio
      */
-    public Inicio() {
+    public RemoverProduto() {
         initComponents();
     }
 

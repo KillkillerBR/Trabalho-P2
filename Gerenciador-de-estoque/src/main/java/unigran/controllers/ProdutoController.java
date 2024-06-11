@@ -31,8 +31,8 @@ public class ProdutoController implements Controller {
         return produtoDTO.getListaDados(dados);
     }
 
-    public void remover(ProdutoDTO dto) {
-        ProdutoDao.getInstancia().remove(dto);
+    public void remover(Produto produtoDTO) {
+        ProdutoDao.getInstancia().remove(produtoDTO);
     }
     
     public void atualizar(Produto produtoDTO) throws Exception  {

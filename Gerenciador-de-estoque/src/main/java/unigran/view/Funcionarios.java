@@ -92,6 +92,7 @@ public class Funcionarios extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3"
             }
         ));
+        jTable1.setToolTipText("");
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

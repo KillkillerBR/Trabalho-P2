@@ -4,23 +4,26 @@ import DTO.DTO;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import DTO.ProdutoDTO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Produto;
 import unigran.controllers.ProdutoController;
 
 public class Principal extends javax.swing.JFrame {
-
     private ProdutoController produtoController;
     private ProdutoDTO produtoSelecionado;
+    Produto r;
     
     public Principal() {
         initComponents();
         produtoSelecionado = new ProdutoDTO();
-        produtoController = new ProdutoController();
+        produtoController = new ProdutoController(); 
         produtoSelecionado = null;
-        atualizaTabela();
-    }
+        atualizaTabela();   
 
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -51,6 +54,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btnRemover.setText("Remover");
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setText("Alterar");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -65,12 +73,6 @@ public class Principal extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3"
@@ -141,7 +143,6 @@ public class Principal extends javax.swing.JFrame {
         List<ProdutoDTO> dados = produtoController.getListaDados();
         String[] colunas = {"ID", "Nome", "Marca", "Categoria", "Preço Custo", "Preço Venda"};
         Object[][] data = new Object[dados.size()][colunas.length];
-
         for (int i = 0; i < dados.size(); i++) {
             ProdutoDTO produto = dados.get(i);
             data[i][0] = produto.builder().getId();
@@ -162,8 +163,7 @@ public class Principal extends javax.swing.JFrame {
         jTable1.getSelectionModel().addListSelectionListener(event -> {
             if (!event.getValueIsAdjusting()) {
                 int selectedRow = jTable1.getSelectedRow();
-                if (selectedRow >= 0 && selectedRow < dados.size()) {
-
+                if (selectedRow >= 0 ) {
                     produtoSelecionado = dados.get(selectedRow);
                 } else {
                     produtoSelecionado = null;
@@ -202,6 +202,21 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Por favor, selecione um produto na tabela.");
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+    if (produtoSelecionado != null) {
+        try {
+            Produto produto = produtoSelecionado.builder();
+            produtoController.remover(produto);
+            atualizaTabela();
+        } catch (Exception ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Erro ao remover produto: " + ex.getMessage());
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor, selecione um produto na tabela.");
+    }
+    }//GEN-LAST:event_btnRemoverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

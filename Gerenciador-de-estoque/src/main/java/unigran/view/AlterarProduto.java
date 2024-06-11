@@ -13,13 +13,11 @@ public class AlterarProduto extends javax.swing.JFrame {
     Produto r;
     ProdutoController controller;
     ProdutoDTO produtoExibir;
- 
     public AlterarProduto(ProdutoDTO produto) {
         initComponents();
         produtoExibir = produto;
         this.controller = new ProdutoController();
         exibir();
-        
     }
      public void exibir() {
          jNomeField.setText(produtoExibir.nome);
@@ -30,7 +28,6 @@ public class AlterarProduto extends javax.swing.JFrame {
          jPrecoVendaField.setText(produtoExibir.precoVenda.toString());
          
     }
-
       public Produto alterar() throws Exception {
             r= produtoExibir.builder();
             r.setNome(jNomeField.getText());
@@ -40,7 +37,6 @@ public class AlterarProduto extends javax.swing.JFrame {
             r.setPrecoCusto(produtoExibir.precoCusto);
             r.setPrecoVenda(produtoExibir.precoVenda);
         }
-
         try {
             float precoCusto = NumberFormat.getInstance().parse(jPrecoCustoField.getText()).floatValue();
             float precoVenda = NumberFormat.getInstance().parse(jPrecoVendaField.getText()).floatValue();
@@ -52,8 +48,6 @@ public class AlterarProduto extends javax.swing.JFrame {
             r.setFornecedor(jFornecedorField.getText());
             return r;
     }
-
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
