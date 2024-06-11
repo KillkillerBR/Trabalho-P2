@@ -1,36 +1,31 @@
+
 package unigran.view;
-import DTO.FuncionarioDTO;
+
+import DTO.SaidaDTO;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import unigran.controllers.FuncionarioController;
+import unigran.controllers.SaidaController;
 
+public class SaidaV extends javax.swing.JFrame {
+    private SaidaController saidaController;
+    private SaidaDTO saidaSelecionada;
 
-public class Funcionarios extends javax.swing.JFrame {
-    private FuncionarioController funcionarioController;
-    private FuncionarioDTO funcionarioSelecionado;   
-
-    
-    public Funcionarios() {
-        funcionarioController = new FuncionarioController();
-        funcionarioSelecionado = new FuncionarioDTO();
+    public SaidaV() {
         initComponents();
-        atualizaTabela();
-
     }
-    private void atualizaTabela() {
-        List<FuncionarioDTO> dados = funcionarioController.getListaDados();
-        String[] colunas = {"ID", "Nome", "E-mail", "Cargo","Salario", "CPF"};
+ private void atualizaTabela() {
+        List<SaidaDTO> dados = saidaController.getListaDados();
+        String[] colunas = {"ID", "Empresa", "Data", "CNPJ"};
         Object[][] data = new Object[dados.size()][colunas.length];
         
         for (int i = 0; i < dados.size(); i++) {
-            FuncionarioDTO funcionario = dados.get(i);
-            data[i][0] = funcionario.builder().getId();
-            data[i][1] = funcionario.builder().getNome();
-            data[i][2] = funcionario.builder().getEmail();
-            data[i][3] = funcionario.builder().getCargo();
-            data[i][4] = funcionario.builder().getSalario();
-            data[i][5] = funcionario.builder().getCpf();
+            SaidaDTO saida = dados.get(i);
+            data[i][0] = saida.builder().getId();
+            data[i][1] = saida.builder().getNotaFiscal().getEmpresa();
+            data[i][2] = saida.builder().getData();
+            data[i][3] = saida.builder().getNotaFiscal().getCnpj();
+
         }
 
         DefaultTableModel model = new DefaultTableModel(data, colunas);
@@ -39,7 +34,7 @@ public class Funcionarios extends javax.swing.JFrame {
         if (!event.getValueIsAdjusting()) {
             int selectedRow = jTable1.getSelectedRow();
             if (selectedRow >= 0) {
-                funcionarioSelecionado = dados.get(selectedRow);
+                saidaSelecionada = dados.get(selectedRow);
             }
         }
     });
@@ -48,37 +43,20 @@ public class Funcionarios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        btnSaidas = new javax.swing.JButton();
-        btnProdutos = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnNovo = new javax.swing.JButton();
         btnRemover = new javax.swing.JButton();
+        btnProdutos = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
+        btnProdutos1 = new javax.swing.JButton();
+        btnEntrada = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btnEntrada = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
-
-        btnSaidas.setText("Saidas");
-        btnSaidas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaidasActionPerformed(evt);
-            }
-        });
-
-        btnProdutos.setText("Produtos");
-        btnProdutos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProdutosActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
-        jLabel1.setText("Funcionarios");
+        jLabel1.setText("Saidas");
 
         btnNovo.setText("Novo");
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -89,10 +67,31 @@ public class Funcionarios extends javax.swing.JFrame {
 
         btnRemover.setText("Remover");
 
+        btnProdutos.setText("Produtos");
+        btnProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProdutosActionPerformed(evt);
+            }
+        });
+
         btnAlterar.setText("Alterar");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
+            }
+        });
+
+        btnProdutos1.setText("Produtos");
+        btnProdutos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProdutos1ActionPerformed(evt);
+            }
+        });
+
+        btnEntrada.setText("Entradas");
+        btnEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntradaActionPerformed(evt);
             }
         });
 
@@ -107,60 +106,42 @@ public class Funcionarios extends javax.swing.JFrame {
         jTable1.setToolTipText("");
         jScrollPane1.setViewportView(jTable1);
 
-        btnEntrada.setText("Entradas");
-        btnEntrada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEntradaActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(btnNovo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAlterar)
                 .addGap(7, 7, 7)
                 .addComponent(btnRemover)
-                .addGap(71, 71, 71)
+                .addGap(106, 106, 106)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                 .addComponent(btnProdutos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEntrada)
-                .addGap(12, 12, 12)
-                .addComponent(btnSaidas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnProdutos1)
                 .addGap(11, 11, 11))
             .addComponent(jScrollPane1)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(12, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRemover)
                     .addComponent(btnAlterar)
                     .addComponent(btnNovo)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnProdutos)
                     .addComponent(btnEntrada)
-                    .addComponent(btnSaidas))
+                    .addComponent(btnProdutos1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -179,25 +160,19 @@ public class Funcionarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        if (funcionarioSelecionado != null) {
-            AlterarFuncionario alterarFuncionario = new AlterarFuncionario(funcionarioSelecionado);
-            alterarFuncionario.setVisible(true);
-            alterarFuncionario.addWindowListener(new java.awt.event.WindowAdapter() {
+        if (saidaSelecionada != null) {
+            AlterarSaida alterarSaida = new AlterarSaida(saidaSelecionada);
+            alterarSaida.setVisible(true);
+            alterarSaida.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosed(java.awt.event.WindowEvent windowEvent) {
                     atualizaTabela();
                 }
             });
         } else {
-            JOptionPane.showMessageDialog(this, "Por favor, selecione um funcionario na tabela.");
+            JOptionPane.showMessageDialog(this, "Por favor, selecione uma saida na tabela.");
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
-
-    private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
-        Principal principal = new Principal();
-        principal.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnProdutosActionPerformed
 
     private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
         EntradaV entrada = new EntradaV();
@@ -205,24 +180,27 @@ public class Funcionarios extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnEntradaActionPerformed
 
-    private void btnSaidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaidasActionPerformed
-        SaidaV saida = new SaidaV();
-        saida.setVisible(true);
+    private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
+        Principal principal = new Principal();
+        principal.setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnSaidasActionPerformed
+    }//GEN-LAST:event_btnProdutosActionPerformed
 
+    private void btnProdutos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutos1ActionPerformed
+        Principal principal = new Principal();
+        principal.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnProdutos1ActionPerformed
 
-
-
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnEntrada;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnProdutos;
+    private javax.swing.JButton btnProdutos1;
     private javax.swing.JButton btnRemover;
-    private javax.swing.JButton btnSaidas;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

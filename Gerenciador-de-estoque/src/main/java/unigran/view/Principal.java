@@ -14,7 +14,6 @@ import unigran.controllers.ProdutoController;
 public class Principal extends javax.swing.JFrame {
     private ProdutoController produtoController;
     private ProdutoDTO produtoSelecionado;
-    Produto r;
     
     public Principal() {
         initComponents();
@@ -68,8 +67,18 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btnEntrada.setText("Entradas");
+        btnEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntradaActionPerformed(evt);
+            }
+        });
 
         btnSaidas.setText("Saidas");
+        btnSaidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaidasActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -186,6 +195,7 @@ public class Principal extends javax.swing.JFrame {
     private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
         CadastroFuncionario cadastroFuncionario = new CadastroFuncionario(new javax.swing.JFrame(), true);
         cadastroFuncionario.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnFuncionariosActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
@@ -217,6 +227,18 @@ public class Principal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Por favor, selecione um produto na tabela.");
     }
     }//GEN-LAST:event_btnRemoverActionPerformed
+
+    private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
+        EntradaV entrada = new EntradaV();
+        entrada.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnEntradaActionPerformed
+
+    private void btnSaidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaidasActionPerformed
+        SaidaV saida = new SaidaV();
+        saida.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnSaidasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -11,13 +11,13 @@ import model.NotaFiscal;
 import model.Registro;
 
 public class EntradaDTO extends DTO {
-    private LocalDateTime data;
+    public LocalDateTime data;
     public String secao;
-    private List<CodigoBarras> codigosDeBarras;
-    private Estoque estoque;
+    public List<CodigoBarras> codigosDeBarras; //?
+    public Estoque estoque;
     private Login login;
-    private NotaFiscal notaFiscal;
-    private Registro registro;
+    public NotaFiscal notaFiscal;
+    public Registro registro;
     
    @Override
    public Entrada builder() {
