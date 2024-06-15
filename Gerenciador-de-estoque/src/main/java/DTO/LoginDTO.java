@@ -2,16 +2,17 @@ package DTO;
 
 import java.util.LinkedList;
 import java.util.List;
+import lombok.Data;
 import model.Estoque;
 import model.Funcionario;
 import model.Login;
-
+@Data
 public class LoginDTO extends DTO {
     public String nome;
-    private String senha;
+    public String senha;
     private Estoque estoque;
     private Funcionario funcionario;
-    
+
     @Override
     public Login builder() {
         Login login = new Login();

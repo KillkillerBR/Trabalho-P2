@@ -5,7 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import model.Login;
 import model.Registro;
-
+import lombok.Data;
+@Data
 public class RegistroDTO extends DTO {
     public LocalDateTime dataAcessoEntrada;
     private LocalDateTime dataEntradaProduto;

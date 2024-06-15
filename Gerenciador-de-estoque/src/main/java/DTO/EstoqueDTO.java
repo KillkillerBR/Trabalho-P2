@@ -3,7 +3,8 @@ package DTO;
 import java.util.LinkedList;
 import java.util.List;
 import model.Estoque;
-
+import lombok.Data;
+@Data
 public class EstoqueDTO extends DTO {
     public Integer estoqueAtual;
     private Integer estoqueAnterior;

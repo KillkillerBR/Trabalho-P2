@@ -1,4 +1,5 @@
 package unigran.controllers;
+
 import DTO.DTO;
 import DTO.ProdutoDTO;
 import java.util.LinkedList;
@@ -6,15 +7,13 @@ import java.util.List;
 import model.Produto;
 import persistencias.ProdutoDao;
 
-
 public class ProdutoController implements Controller {
-
 
     public void salvar(Produto produtoDTO) throws Exception {
         ProdutoDao.getInstancia().salvar(produtoDTO);
     }
-    
-        @Override
+
+    @Override
     public String[] getTitulosColunas() {
         return new String[]{"id", "Nome"};
     }
@@ -27,6 +26,9 @@ public class ProdutoController implements Controller {
     @Override
     public List getListaDados() {
         List<Produto> dados = ProdutoDao.getInstancia().listar();
+        for (Produto dado : dados) {
+            System.out.println(dado.getId());
+        }
         ProdutoDTO produtoDTO = new ProdutoDTO();
         return produtoDTO.getListaDados(dados);
     }
@@ -34,11 +36,11 @@ public class ProdutoController implements Controller {
     public void remover(Produto produtoDTO) {
         ProdutoDao.getInstancia().remove(produtoDTO);
     }
-    
-    public void atualizar(Produto produtoDTO) throws Exception  {
+
+    public void atualizar(Produto produtoDTO) throws Exception {
         ProdutoDao.getInstancia().atualiza(produtoDTO);
     }
-    
+
     public List listar() {
         List<Produto> produtos = ProdutoDao.getInstancia().listar();
         ProdutoDTO dto = new ProdutoDTO();
@@ -59,5 +61,5 @@ public class ProdutoController implements Controller {
     public void salvar(DTO dto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

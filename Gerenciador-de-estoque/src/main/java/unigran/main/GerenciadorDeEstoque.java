@@ -5,7 +5,7 @@ import unigran.view.Principal;
 public class GerenciadorDeEstoque {
 
     public static void main(String[] args) {
-        CriarLogin criarLogin = new CriarLogin(new java.awt.Frame(), true);
-        criarLogin.setVisible(true);
+        Principal principal = new Principal();
+        principal.setVisible(true);
     }
 }

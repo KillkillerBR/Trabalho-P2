@@ -3,7 +3,8 @@ package DTO;
 import java.util.LinkedList;
 import java.util.List;
 import model.Tipo;
-
+import lombok.Data;
+@Data
 public class TipoDTO extends DTO {
     String descricao;
     

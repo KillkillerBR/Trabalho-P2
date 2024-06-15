@@ -11,7 +11,6 @@ public class LoginController implements Controller {
     
     public void salvar(Login loginDTO) throws Exception {
         LoginDao.getInstancia().salvar(loginDTO);
-         
     }
 
     @Override
@@ -24,7 +23,9 @@ public class LoginController implements Controller {
         LoginDTO dto = (LoginDTO) o;
         return new Object[]{dto.id, dto.nome};
     }
-
+    public void atualizar(Login loginDTO) throws Exception  {
+        LoginDao.getInstancia().atualiza(loginDTO);
+    }
     @Override
     public List getListaDados() {
         List<Login> dados = LoginDao.getInstancia().listar();
@@ -42,11 +43,11 @@ public class LoginController implements Controller {
 
     @Override
     public void salvar(DTO dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void remover(DTO dto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

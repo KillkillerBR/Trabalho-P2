@@ -1,7 +1,6 @@
 package unigran.controllers;
 import java.util.List;
 import model.Funcionario;
-import persistencias.Dao;
 import persistencias.FuncionarioDao;
 import DTO.DTO;
 import DTO.FuncionarioDTO;
@@ -9,9 +8,8 @@ import DTO.FuncionarioDTO;
 
 public class FuncionarioController implements Controller {
 
-    @Override
-    public void salvar(DTO dto) throws Exception {
-        FuncionarioDao.getInstancia().salvar(dto);
+    public void salvar(Funcionario funcionarioDTO) throws Exception {
+        FuncionarioDao.getInstancia().salvar(funcionarioDTO);
     }
         @Override
     public String[] getTitulosColunas() {
@@ -23,7 +21,9 @@ public class FuncionarioController implements Controller {
         FuncionarioDTO dto = (FuncionarioDTO) o;
         return new Object[]{dto.id, dto.nome};
     }
-
+    public void atualizar(Funcionario funcionarioDTO) throws Exception  {
+        FuncionarioDao.getInstancia().atualiza(funcionarioDTO);
+    }
     @Override
     public List getListaDados() {
         List<Funcionario> dados = FuncionarioDao.getInstancia().listar();
@@ -31,8 +31,17 @@ public class FuncionarioController implements Controller {
         return funcionarioDTO.getListaDados(dados);
     }
 
+    public void remover(Funcionario funcionarioDTO) {
+        FuncionarioDao.getInstancia().remove(funcionarioDTO);
+    }
+
+    @Override
+    public void salvar(DTO dto) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     @Override
     public void remover(DTO dto) {
-        FuncionarioDao.getInstancia().remove(dto);
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

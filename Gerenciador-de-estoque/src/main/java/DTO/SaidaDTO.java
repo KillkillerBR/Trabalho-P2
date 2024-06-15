@@ -9,7 +9,8 @@ import model.Login;
 import model.NotaFiscal;
 import model.Registro;
 import model.Saida;
-
+import lombok.Data;
+@Data
 public class SaidaDTO extends DTO {
     private LocalDateTime data;
     public String motivo;

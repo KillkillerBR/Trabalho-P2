@@ -2,9 +2,10 @@ package DTO;
 
 import java.util.LinkedList;
 import java.util.List;
+import lombok.Data;
 import model.Cidade;
 import model.Estado;
-
+@Data
 public class CidadeDTO extends DTO {
     private String nome;
     private Estado estado;

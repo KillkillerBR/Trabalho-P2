@@ -2,11 +2,11 @@ package DTO;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import lombok.Data;
 import model.Endereco;
 import model.Funcionario;
 import model.Login;
-
-
+@Data
 public class FuncionarioDTO extends DTO {
     public String nome;
     public String cpf;
@@ -20,7 +20,6 @@ public class FuncionarioDTO extends DTO {
     public String salario;
     public Endereco endereco;
     private Login login;
-    
     @Override
     public Funcionario builder() {
         Funcionario funcionario = new Funcionario();

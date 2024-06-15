@@ -13,6 +13,6 @@ public class CodigoBarrasDao extends Dao {
     }
     
     public List listar() {
-        return em.createNativeQuery("select * from cidade p", CodigoBarras.class).getResultList();
+        return em.createNativeQuery("select * from CodigoBarras p", CodigoBarras.class).getResultList();
     } 
 }

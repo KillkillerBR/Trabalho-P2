@@ -13,6 +13,6 @@ public class EnderecoDao extends Dao {
     }
     
     public List listar() {
-        return em.createNativeQuery("select * from cidade p", Endereco.class).getResultList();
+        return em.createNativeQuery("select * from endereco", Endereco.class).getResultList();
     }
 }

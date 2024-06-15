@@ -1,36 +1,33 @@
 package unigran.view;
 
-import DTO.DTO;
 import DTO.ProdutoDTO;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import model.Produto;
 import unigran.controllers.ProdutoController;
 
 
 public class CadastroProduto extends javax.swing.JFrame {
-    ProdutoController controller;
+    ProdutoController controller = new ProdutoController();
     ProdutoDTO r;
-
     public CadastroProduto() {
         initComponents();
-        this.controller = new ProdutoController();
+        
     }
     public ProdutoDTO salvar() {
             r= new ProdutoDTO();
-            r.builder().setNome(jNomeField.getText());
-            r.builder().setMarca(jMarcaField.getText());
-            r.builder().setCategoria(jCategoriaField.getText());
+            r.setNome(jNomeField.getText());
+            r.setMarca(jMarcaField.getText());
+            r.setCategoria(jCategoriaField.getText());
             float precoCusto = ((Number) jPrecoCustoField.getValue()).floatValue();
             float precoVenda = ((Number) jPrecoVendaField.getValue()).floatValue();
-            r.builder().setPrecoCusto(precoCusto);
-            r.builder().setPrecoVenda(precoVenda);
+            r.setPrecoCusto(precoCusto);
+            r.setPrecoVenda(precoVenda);
             Date date = jDateValidade.getDate();
             LocalDateTime localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-            r.builder().setDataValidadeEmbalagem(localDateTime);
-            r.builder().setFornecedor(jFornecedorField.getText());
+            r.setDataValidadeEmbalagem(localDateTime);
+            r.setFornecedor(jFornecedorField.getText());
             return r;
     }
     @SuppressWarnings("unchecked")

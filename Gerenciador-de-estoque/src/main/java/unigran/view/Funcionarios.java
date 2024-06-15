@@ -167,10 +167,10 @@ public class Funcionarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        CadastroProduto produto = new CadastroProduto();
-        produto.setVisible(true);
+        CadastroFuncionario cadastroFuncionario = new CadastroFuncionario(null, true);
+        cadastroFuncionario.setVisible(true);
         atualizaTabela();
-        produto.addWindowListener(new java.awt.event.WindowAdapter() {
+        cadastroFuncionario.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosed(java.awt.event.WindowEvent windowEvent) {
                 atualizaTabela();

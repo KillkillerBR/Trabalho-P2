@@ -2,8 +2,10 @@ package DTO;
 
 import java.util.LinkedList;
 import java.util.List;
+import lombok.Data;
 import model.Cidade;
 import model.Endereco;
+@Data
 
 public class EnderecoDTO extends DTO {
     private String rua;

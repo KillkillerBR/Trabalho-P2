@@ -148,16 +148,17 @@ public class Principal extends javax.swing.JFrame {
 
     public void atualizaTabela() {
         List<ProdutoDTO> dados = produtoController.getListaDados();
+        
         String[] colunas = {"ID", "Nome", "Marca", "Categoria", "Preço Custo", "Preço Venda"};
         Object[][] data = new Object[dados.size()][colunas.length];
         for (int i = 0; i < dados.size(); i++) {
             ProdutoDTO produto = dados.get(i);
-            data[i][0] = produto.builder().getId();
-            data[i][1] = produto.builder().getNome();
-            data[i][2] = produto.builder().getMarca();
-            data[i][3] = produto.builder().getCategoria();
-            data[i][4] = produto.builder().getPrecoCusto();
-            data[i][5] = produto.builder().getPrecoVenda();
+            data[i][0] = produto.getId();
+            data[i][1] = produto.getNome();
+            data[i][2] = produto.getMarca();
+            data[i][3] = produto.getCategoria();
+            data[i][4] = produto.getPrecoCusto();
+            data[i][5] = produto.getPrecoVenda();
         }
 
         DefaultTableModel model = new DefaultTableModel(data, colunas){
@@ -181,7 +182,6 @@ public class Principal extends javax.swing.JFrame {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         CadastroProduto produto = new CadastroProduto();
         produto.setVisible(true);
-        atualizaTabela();
         produto.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosed(java.awt.event.WindowEvent windowEvent) {
@@ -191,8 +191,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
-        CadastroFuncionario cadastroFuncionario = new CadastroFuncionario(new javax.swing.JFrame(), true);
-        cadastroFuncionario.setVisible(true);
+        Funcionarios funcionarios = new Funcionarios();
+        funcionarios.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnFuncionariosActionPerformed
 

@@ -13,6 +13,6 @@ public class FuncionarioDao extends Dao {
     }
     
     public List listar() {
-        return em.createNativeQuery("select * from cidade p", Funcionario.class).getResultList();
+        return em.createNativeQuery("select * from funcionario p", Funcionario.class).getResultList();
     }
 }

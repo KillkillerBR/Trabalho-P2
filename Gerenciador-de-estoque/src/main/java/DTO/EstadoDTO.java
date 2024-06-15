@@ -1,8 +1,10 @@
 package DTO;
 
 import java.util.LinkedList;
-import java.util.List;
 import model.Estado;
+import java.util.List;
+import lombok.Data;
+@Data
 
 public class EstadoDTO extends DTO {
     private String nomeEstado;

@@ -1,6 +1,7 @@
 package unigran.view;
 import DTO.CidadeDTO;
 import DTO.DTO;
+import DTO.EnderecoDTO;
 import DTO.FuncionarioDTO;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -15,43 +16,48 @@ import unigran.controllers.FuncionarioController;
 
 public class CadastroFuncionario extends javax.swing.JDialog {
     FuncionarioDTO r;
-    FuncionarioController controller;
-     CidadeController cidadeController;
-
+    FuncionarioController controller = new FuncionarioController();
+    EnderecoDTO s;
+    CidadeController cidadeController = new CidadeController();
+    List<CidadeDTO> cidades = cidadeController.getCidades() ;
     public CadastroFuncionario(java.awt.Frame parent, boolean modal) {
-        cidadeController = new CidadeController();
+       
         initComponents();
         formatarCamp();
         carregarCidadesNoComboBox();
     }
     private void carregarCidadesNoComboBox() {
-        List<CidadeDTO> cidades = cidadeController.getCidades() ;
         for (CidadeDTO cidade : cidades) {
-            jComboBoxCidade.addItem(cidade.toString());
+            jComboBoxCidade.addItem(cidade.builder().getNome());
         }
     }
 
 
-    public DTO salvar() {
+    public FuncionarioDTO salvar() {
             r= new FuncionarioDTO();
-            r.builder().setNome(jNomeField.getText());
-            r.builder().setEmail(jEmailField.getText());
+            s= new EnderecoDTO();
+            r.setNome(jNomeField.getText());
+            r.setEmail(jEmailField.getText());
             Date dateNascimento = jDateNascimento.getDate();
             LocalDate localDate2 = dateNascimento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            r.builder().setNascimento(localDate2);
-            r.builder().setTelefone(jTelefoneField.getText());
-            r.builder().setCpf(jCpfField.getText());
-            r.endereco.setRua(jEnderecoField.getText());
-            r.endereco.setCep(jCepField.getText());
+            r.setNascimento(localDate2);
+            r.setTelefone(jTelefoneField.getText());
+            r.setCpf(jCpfField.getText());
+            s.setRua(jEnderecoField.getText());
+            s.setCep(jCepField.getText());
             Date dateAdmissao = jDateAdmissao.getDate();
             LocalDate localDate = dateAdmissao.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             r.builder().setAdmissao(localDate);
-            CidadeDTO cidadeSelecionada = (CidadeDTO) jComboBoxCidade.getSelectedItem();
-            r.endereco.setCidade(cidadeSelecionada.builder());        
+                    for (CidadeDTO cidade : cidades) {
+                        if(jComboBoxCidade.getSelectedItem().toString().equals(cidade.builder().getNome()))
+                            s.setCidade(cidade.builder());        
+        }
+            
+            
             r.builder().setCargo(jComboBoxCargo.getSelectedItem().toString());
             r.builder().setSalario(jSalarioField.getText());
+            r.builder().setEndereco(s.builder());
            return r;
-           
 
     }
     @SuppressWarnings("unchecked")
@@ -149,7 +155,7 @@ public class CadastroFuncionario extends javax.swing.JDialog {
 
         jTelefoneField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
-        jSalarioField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤#,##0.00"))));
+        jSalarioField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         jSalarioField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
         jEmailField.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
@@ -172,7 +178,6 @@ public class CadastroFuncionario extends javax.swing.JDialog {
         }
 
         jComboBoxCidade.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jComboBoxCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estoquista", "Vendedor", "Tecnico", "Supervisor" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,9 +215,7 @@ public class CadastroFuncionario extends javax.swing.JDialog {
                                 .addComponent(rbMasculino)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(rbFeminino))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelEmail)
-                                .addGap(89, 89, 89))
+                            .addComponent(labelEmail)
                             .addComponent(jEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelDataNasc)
                             .addComponent(jDateNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -301,7 +304,9 @@ public class CadastroFuncionario extends javax.swing.JDialog {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         try {
-            controller.salvar(r);
+            FuncionarioDTO funcionarioDTO = salvar();
+            controller.salvar(funcionarioDTO.builder());
+            dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage()); 
         }

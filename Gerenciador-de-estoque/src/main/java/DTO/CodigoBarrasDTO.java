@@ -2,9 +2,11 @@ package DTO;
 
 import java.util.LinkedList;
 import java.util.List;
+import lombok.Data;
 import model.CodigoBarras;
 import model.Estoque;
 import model.Tipo;
+@Data
 
 public class CodigoBarrasDTO extends DTO {
     private Tipo tipo;

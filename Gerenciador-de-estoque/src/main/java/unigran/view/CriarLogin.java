@@ -8,15 +8,18 @@ public class CriarLogin extends javax.swing.JDialog {
     LoginController controller;
     public LoginDTO salvar() {     
         r = new LoginDTO();
-        r.builder().setNome(jLoginField.getText());
-        r.builder().setSenha(new String(jPasswordField.getPassword()));
-       
+        r.setNome(jLoginField.getText());
+        r.setSenha(new String(jPasswordField.getPassword()));
+        System.out.println(r.getNome());
+        System.out.println(r.getSenha());
         return r;
+        
     }
     public CriarLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        this.controller = new LoginController();
         initComponents();
+        this.controller = new LoginController();
+        
     }
 
     @SuppressWarnings("unchecked")

@@ -3,13 +3,14 @@ package DTO;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
+import lombok.Data;
 import model.CodigoBarras;
 import model.Entrada;
 import model.Estoque;
 import model.Produto;
 import model.Saida;
 import model.Validade;
-
+@Data
 public class ProdutoDTO extends DTO {
     public String nome;
     public String marca;

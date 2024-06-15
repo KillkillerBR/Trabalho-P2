@@ -5,7 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import model.Entrada;
 import model.Validade;
-
+import lombok.Data;
+@Data
 public class ValidadeDTO extends DTO {
     private LocalDateTime fabricacao;
     private Entrada entrada;

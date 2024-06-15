@@ -3,12 +3,14 @@ package DTO;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
+import lombok.Data;
 import model.CodigoBarras;
 import model.Entrada;
 import model.Estoque;
 import model.Login;
 import model.NotaFiscal;
 import model.Registro;
+@Data
 
 public class EntradaDTO extends DTO {
     public LocalDateTime data;

@@ -13,6 +13,6 @@ public class EntradaDao extends Dao {
     }
     
     public List listar() {
-        return em.createNativeQuery("select * from cidade p", Entrada.class).getResultList();
+        return em.createNativeQuery("select * from entrada ", Entrada.class).getResultList();
     }
 }

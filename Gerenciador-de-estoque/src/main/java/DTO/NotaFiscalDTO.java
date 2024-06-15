@@ -6,7 +6,8 @@ import model.Endereco;
 import model.Entrada;
 import model.NotaFiscal;
 import model.Saida;
-
+import lombok.Data;
+@Data
 public class NotaFiscalDTO extends DTO {
     public String cnpj;
     private String empresa;
