@@ -1,6 +1,8 @@
 package unigran.view;
 import DTO.FuncionarioDTO;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import unigran.controllers.FuncionarioController;
@@ -88,6 +90,11 @@ public class Funcionarios extends javax.swing.JFrame {
         });
 
         btnRemover.setText("Remover");
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setText("Alterar");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -210,6 +217,21 @@ public class Funcionarios extends javax.swing.JFrame {
         saida.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSaidasActionPerformed
+
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+            if (funcionarioSelecionado != null) {
+        try {
+            FuncionarioDTO funcionario = funcionarioSelecionado;
+            funcionarioController.remover(funcionario.builder());
+            atualizaTabela();
+        } catch (Exception ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Erro ao remover produto: " + ex.getMessage());
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor, selecione um produto na tabela.");
+    }
+    }//GEN-LAST:event_btnRemoverActionPerformed
 
 
 

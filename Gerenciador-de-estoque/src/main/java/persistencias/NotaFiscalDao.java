@@ -12,7 +12,9 @@ public class NotaFiscalDao extends Dao {
         return instancia;
     }
     
+    @Override
     public List listar() {
+        em.clear();
         return em.createNativeQuery("select * from cidade p", NotaFiscal.class).getResultList();
     }
 }

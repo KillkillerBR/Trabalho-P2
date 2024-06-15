@@ -37,6 +37,6 @@ public class RegistroController implements Controller {
 
     @Override
     public void salvar(DTO dto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

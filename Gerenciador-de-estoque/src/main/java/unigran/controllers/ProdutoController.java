@@ -46,7 +46,8 @@ public class ProdutoController implements Controller {
         ProdutoDTO dto = new ProdutoDTO();
         return dto.getListaDados(produtos);
     }
-
+    
+    
     @Override
     public Object[] getDados(DTO dto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

@@ -12,7 +12,9 @@ public class EstadoDao extends Dao {
         return instancia;
     }
     
+    @Override
     public List listar() {
+        em.clear();
         return em.createNativeQuery("select * from estado p", Estado.class).getResultList();
     }
     

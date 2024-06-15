@@ -12,7 +12,9 @@ public class ProdutoDao extends Dao {
         return instancia;
     }
     
+    @Override
     public List listar() {
+        em.clear();
         return em.createNativeQuery("select * from produto", Produto.class).getResultList();
     }
 }

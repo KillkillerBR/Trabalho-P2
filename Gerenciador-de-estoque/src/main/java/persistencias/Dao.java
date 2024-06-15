@@ -24,10 +24,18 @@ public abstract class Dao {
         etx.commit();
     }
     
-    public void remove(Object o) {
+public void remove(Object o) {
         etx.begin();
-        em.remove(o);
-        etx.commit();
+        try {
+            if (!em.contains(o)) {
+                o = em.merge(o);
+            }
+            em.remove(o);
+            etx.commit();
+        } catch (Exception E) {
+            etx.rollback();
+            throw E;
+        }
     }
     
     public abstract List listar();

@@ -13,6 +13,7 @@ public class ValidadeDao extends Dao {
     }
     
     public List listar() {
+        em.clear();
         return em.createNativeQuery("select * from cidade p", Validade.class).getResultList();
     }
 }

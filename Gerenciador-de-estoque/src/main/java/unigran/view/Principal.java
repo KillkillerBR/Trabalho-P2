@@ -6,20 +6,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Produto;
 import unigran.controllers.ProdutoController;
 
 public class Principal extends javax.swing.JFrame {
     private ProdutoController produtoController;
     private ProdutoDTO produtoSelecionado;
-    
+
     public Principal() {
         initComponents();
         produtoSelecionado = new ProdutoDTO();
         produtoController = new ProdutoController(); 
         produtoSelecionado = null;
         atualizaTabela();   
-
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -214,8 +212,8 @@ public class Principal extends javax.swing.JFrame {
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
     if (produtoSelecionado != null) {
         try {
-            Produto produto = produtoSelecionado.builder();
-            produtoController.remover(produto);
+            ProdutoDTO produto = produtoSelecionado;
+            produtoController.remover(produto.builder());
             atualizaTabela();
         } catch (Exception ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);

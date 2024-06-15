@@ -14,6 +14,7 @@ public class LoginDao extends Dao {
 
     @Override
     public List listar() {
+        em.clear();
         return em.createNativeQuery("select * from login", Login.class).getResultList();
     }
 

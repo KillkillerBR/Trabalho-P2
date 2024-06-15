@@ -1,5 +1,7 @@
 package unigran.view;
 
+import DTO.CodigoBarrasDTO;
+import DTO.EstoqueDTO;
 import DTO.ProdutoDTO;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -11,12 +13,17 @@ import unigran.controllers.ProdutoController;
 public class CadastroProduto extends javax.swing.JFrame {
     ProdutoController controller = new ProdutoController();
     ProdutoDTO r;
+    EstoqueDTO es;
+    CodigoBarrasDTO barras;
     public CadastroProduto() {
         initComponents();
         
     }
     public ProdutoDTO salvar() {
             r= new ProdutoDTO();
+            es= new EstoqueDTO();
+            barras= new CodigoBarrasDTO();
+            es.setEstoqueAtual(0);
             r.setNome(jNomeField.getText());
             r.setMarca(jMarcaField.getText());
             r.setCategoria(jCategoriaField.getText());
@@ -28,6 +35,8 @@ public class CadastroProduto extends javax.swing.JFrame {
             LocalDateTime localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
             r.setDataValidadeEmbalagem(localDateTime);
             r.setFornecedor(jFornecedorField.getText());
+            r.setEstoque(es.builder());
+            r.setCodigoDeBarras(barras.builder());
             return r;
     }
     @SuppressWarnings("unchecked")
