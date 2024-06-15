@@ -24,7 +24,10 @@ public class LoginDao extends Dao {
                      .setParameter("senha", senha)
                      .getSingleResult();
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
+            
+
         }
     }
 }

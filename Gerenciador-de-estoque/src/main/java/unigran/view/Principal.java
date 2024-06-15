@@ -1,8 +1,6 @@
 package unigran.view;
 
-import DTO.DTO;
 import java.util.List;
-import javax.swing.table.AbstractTableModel;
 import DTO.ProdutoDTO;
 import java.util.logging.Level;
 import java.util.logging.Logger;

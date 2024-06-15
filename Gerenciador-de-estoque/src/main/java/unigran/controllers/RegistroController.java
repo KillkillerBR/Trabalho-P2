@@ -9,9 +9,8 @@ import persistencias.RegistroDao;
 
 
 public class RegistroController implements Controller {
-        @Override
-    public void salvar(DTO dto) throws Exception {
-        RegistroDao.getInstancia().salvar(dto);
+    public void salvar(Registro registroDTO) throws Exception {
+        RegistroDao.getInstancia().salvar(registroDTO);
     }
         @Override
     public String[] getTitulosColunas() {
@@ -34,5 +33,10 @@ public class RegistroController implements Controller {
     @Override
     public void remover(DTO dto) {
         RegistroDao.getInstancia().remove(dto);
+    }
+
+    @Override
+    public void salvar(DTO dto) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -1,21 +1,21 @@
 package unigran.view;
-import DTO.DTO;
-import DTO.RegistroDTO;
+import DTO.LoginDTO;
 import javax.swing.JOptionPane;
-import unigran.controllers.RegistroController;
+import java.util.Arrays;
+import unigran.controllers.LoginController;
 public class CriarLogin extends javax.swing.JDialog {
-    RegistroDTO r;
-    RegistroController controller;
-    public DTO salvar() {
-            if(r==null)
-                r= new RegistroDTO();
-            r.login.setNome(jLoginField.getText());
-            String senha = new String(jPasswordField.getPassword());
-            r.login.setSenha(senha);
-            return r;
+    LoginDTO r;
+    LoginController controller;
+    public LoginDTO salvar() {     
+        r = new LoginDTO();
+        r.builder().setNome(jLoginField.getText());
+        r.builder().setSenha(new String(jPasswordField.getPassword()));
+       
+        return r;
     }
     public CriarLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.controller = new LoginController();
         initComponents();
     }
 
@@ -151,14 +151,17 @@ public class CriarLogin extends javax.swing.JDialog {
     }//GEN-LAST:event_SenhaCheckBoxActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        if (jPasswordField.getPassword() == jConfirmPasswordField.getPassword()){
+        if (Arrays.equals(jPasswordField.getPassword(), jConfirmPasswordField.getPassword())) {
             try {
-            controller.salvar(r);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
-        }
-        dispose();
-        }else{
+                LoginDTO loginDTO = salvar();
+                controller.salvar(loginDTO.builder());
+                dispose();
+                Login login = new Login(new java.awt.Frame(), true);
+                login.setVisible(true);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "As senhas não coincidem!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
             

@@ -12,25 +12,25 @@ import unigran.controllers.ProdutoController;
 
 public class CadastroProduto extends javax.swing.JFrame {
     ProdutoController controller;
-    Produto r;
+    ProdutoDTO r;
 
     public CadastroProduto() {
         initComponents();
         this.controller = new ProdutoController();
     }
-    public Produto salvar() {
-            r= new Produto();
-            r.setNome(jNomeField.getText());
-            r.setMarca(jMarcaField.getText());
-            r.setCategoria(jCategoriaField.getText());
+    public ProdutoDTO salvar() {
+            r= new ProdutoDTO();
+            r.builder().setNome(jNomeField.getText());
+            r.builder().setMarca(jMarcaField.getText());
+            r.builder().setCategoria(jCategoriaField.getText());
             float precoCusto = ((Number) jPrecoCustoField.getValue()).floatValue();
             float precoVenda = ((Number) jPrecoVendaField.getValue()).floatValue();
-            r.setPrecoCusto(precoCusto);
-            r.setPrecoVenda(precoVenda);
+            r.builder().setPrecoCusto(precoCusto);
+            r.builder().setPrecoVenda(precoVenda);
             Date date = jDateValidade.getDate();
             LocalDateTime localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-            r.setDataValidadeEmbalagem(localDateTime);
-            r.setFornecedor(jFornecedorField.getText());
+            r.builder().setDataValidadeEmbalagem(localDateTime);
+            r.builder().setFornecedor(jFornecedorField.getText());
             return r;
     }
     @SuppressWarnings("unchecked")
@@ -199,8 +199,8 @@ public class CadastroProduto extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         try {
-            Produto produtoDTO = salvar();
-            controller.salvar(produtoDTO);
+            ProdutoDTO produtoDTO = salvar();
+            controller.salvar(produtoDTO.builder());
             dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage()); 

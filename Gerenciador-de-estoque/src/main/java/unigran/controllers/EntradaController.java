@@ -21,7 +21,9 @@ public class EntradaController implements Controller {
         EntradaDTO dto = (EntradaDTO) o;
         return new Object[]{dto.id, dto.secao};
     }
-
+    public void atualizar(Entrada entradaDTO) throws Exception  {
+        EntradaDao.getInstancia().atualiza(entradaDTO);
+    }
     @Override
     public List getListaDados() {
         List<Entrada> dados = EntradaDao.getInstancia().listar();

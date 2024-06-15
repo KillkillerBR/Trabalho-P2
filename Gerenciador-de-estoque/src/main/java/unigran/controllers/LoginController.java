@@ -7,15 +7,11 @@ import DTO.DTO;
 import DTO.LoginDTO;
 
 public class LoginController implements Controller {
-    private LoginDao loginDao;
 
-    public LoginController() {
-        loginDao = LoginDao.getInstancia();
-    }
-
-    @Override
-    public void salvar(DTO dto) throws Exception {
-        loginDao.salvar(dto);
+    
+    public void salvar(Login loginDTO) throws Exception {
+        LoginDao.getInstancia().salvar(loginDTO);
+         
     }
 
     @Override
@@ -31,17 +27,26 @@ public class LoginController implements Controller {
 
     @Override
     public List getListaDados() {
-        List<Login> dados = loginDao.listar();
+        List<Login> dados = LoginDao.getInstancia().listar();
         LoginDTO loginDTO = new LoginDTO();
         return loginDTO.getListaDados(dados);
     }
 
-    @Override
-    public void remover(DTO dto) {
-        loginDao.remove(dto);
+    public void remover(LoginDTO loginDTO) {
+         LoginDao.getInstancia().remove(loginDTO);
     }
 
     public Login buscarPorNomeESenha(String nome, String senha) {
-        return loginDao.buscarPorNomeESenha(nome, senha);
+        return LoginDao.getInstancia().buscarPorNomeESenha(nome, senha);
+    }
+
+    @Override
+    public void salvar(DTO dto) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void remover(DTO dto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
